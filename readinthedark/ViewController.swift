@@ -10,8 +10,10 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController {
-    @IBOutlet weak var previewView: UIView!
     
+    @IBOutlet weak var previewView: UIView!
+    var flashOn = false
+    var captureDevice: AVCaptureDevice?
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     
@@ -20,22 +22,19 @@ class ViewController: UIViewController {
         initializeCamera()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func initializeCamera() {
         do {
-            let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+            captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
             let input = try AVCaptureDeviceInput(device: captureDevice!)
             captureSession = AVCaptureSession()
+
             captureSession?.addInput(input)
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             videoPreviewLayer?.frame = view.layer.bounds
             previewView.layer.addSublayer(videoPreviewLayer!)
-            captureDevice?.torchMode = .on
+
+
             captureSession?.startRunning()
             NSLog("DONE")
         } catch {
@@ -43,5 +42,16 @@ class ViewController: UIViewController {
             return
         }
     }
+    
+    @IBAction func flashButton(_ sender: UIButton) {
+        flashOn = !flashOn
+        do {
+            try captureDevice?.lockForConfiguration()
+            captureDevice?.torchMode = flashOn ? .on : .off
+        } catch {
+            NSLog("There was some issue with lockForConfiguration")
+        }
+    }
+
 }
 

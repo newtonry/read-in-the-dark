@@ -10,9 +10,8 @@
 ###Sprint 2 Goals
 * [ ] NLP Kit, display whats being read
 * [ ] NLP on/off button
+* [ ] Handle rotation
 
 ###Sprint 3 Goals 
 * [ ] Finalize design/icons
 * [ ] Customize on different devices
-
-

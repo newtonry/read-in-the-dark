@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     var flashOn = false
+    var lastTranslationX: CGFloat = 0
     var captureDevice: AVCaptureDevice!
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
@@ -44,7 +45,6 @@ class ViewController: UIViewController {
             } catch {
                 NSLog("There was some issue with lockForConfiguration")
             }
-
             
         } catch {
             print(error)
@@ -52,14 +52,25 @@ class ViewController: UIViewController {
         }
     }
     
+    func getNewISO(translation: CGPoint, velocity: CGPoint) -> Float {
+        let offset = (translation.x - lastTranslationX) * 3 // TODO add something with velocity later
+        var newISO = captureDevice.iso + Float(offset)
+        newISO = max(newISO, captureDevice.activeFormat.minISO)
+        newISO = min(newISO, captureDevice.activeFormat.maxISO)
+        NSLog("\(newISO)")
+        return newISO
+    }
     
-    @IBAction func onMakeBrighter(_ sender: UIButton) {
-        // Handle min/max iso
-        captureDevice.setExposureModeCustom(duration: AVCaptureDevice.currentExposureDuration, iso: 400, completionHandler: nil)
-        NSLog("\(AVCaptureDevice.currentExposureDuration)")
-        NSLog("\(AVCaptureDevice.currentISO)")
-        NSLog("\(captureDevice.activeFormat.minISO)")
-        NSLog("\(captureDevice.activeFormat.maxISO)")
+    @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let velocity = sender.velocity(in: view)
+        if sender.state == .changed {
+            let newISO = getNewISO(translation: translation, velocity: velocity)
+            captureDevice.setExposureModeCustom(duration: AVCaptureDevice.currentExposureDuration, iso: newISO, completionHandler: nil)            
+            lastTranslationX = translation.x            
+        } else if sender.state == .ended {
+            lastTranslationX = 0
+        }
     }
     
     @IBAction func flashButton(_ sender: UIButton) {

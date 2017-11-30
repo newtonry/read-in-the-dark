@@ -32,25 +32,17 @@
                                             <action selector="flashButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ed2-OB-ZkK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxD-Sj-MDe">
-                                        <rect key="frame" x="10" y="10" width="96" height="30"/>
-                                        <state key="normal" title="Make brighter"/>
-                                        <connections>
-                                            <action selector="onMakeBrighter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Itr-tR-JBn"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.62692732750000002" green="0.83554136940000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="CEd-f3-PZP" secondAttribute="trailing" constant="10" id="DGt-fS-sR8"/>
-                                    <constraint firstItem="NxD-Sj-MDe" firstAttribute="leading" secondItem="udO-U7-iak" secondAttribute="leading" constant="10" id="Mb7-do-d5Z"/>
                                     <constraint firstItem="CEd-f3-PZP" firstAttribute="centerY" secondItem="udO-U7-iak" secondAttribute="centerY" id="ZBP-sc-jkf"/>
-                                    <constraint firstItem="NxD-Sj-MDe" firstAttribute="centerY" secondItem="udO-U7-iak" secondAttribute="centerY" id="jpj-ol-97L"/>
                                     <constraint firstAttribute="height" constant="50" id="loN-mi-D90"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="udO-U7-iak" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4Ce-6q-CLN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Q6p-Sn-FpM" secondAttribute="bottom" id="8pR-vH-Qdj"/>
@@ -61,12 +53,20 @@
                             <constraint firstItem="Q6p-Sn-FpM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ziR-Sf-ufx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="79w-Qq-5MR" appends="YES" id="mvj-GF-rWH"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="previewView" destination="Q6p-Sn-FpM" id="uCp-0Z-Leb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="79w-Qq-5MR">
+                    <connections>
+                        <action selector="didPan:" destination="BYZ-38-t0r" id="x4z-EL-pfP"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
         </scene>
     </scenes>

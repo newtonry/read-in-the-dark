@@ -78,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="previewView" destination="Q6p-Sn-FpM" id="uCp-0Z-Leb"/>
+                        <outlet property="readTextView" destination="eTZ-57-IK6" id="L4K-CG-tip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

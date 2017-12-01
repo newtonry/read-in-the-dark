@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>In order to use the app, we need access to your camera. Select 'OK' to continue.</string>
+	<string>In order to use the app, we need access to your camera. Select &apos;OK&apos; to continue.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

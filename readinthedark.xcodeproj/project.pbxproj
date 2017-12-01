@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A52A877D5BC88FA33949C91 /* Pods_readinthedark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1766BDAF6EBC4550D288611C /* Pods_readinthedark.framework */; };
 		C56F991A1FD079AA003CDCA7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C56F99191FD079AA003CDCA7 /* README.md */; };
+		C5761A141FD1D5BD00E47BF9 /* Lenore3.png in Resources */ = {isa = PBXBuildFile; fileRef = C5761A131FD1D5BD00E47BF9 /* Lenore3.png */; };
 		C59D6F051FC49AC500C4CF5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6F041FC49AC500C4CF5A /* AppDelegate.swift */; };
 		C59D6F071FC49AC500C4CF5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59D6F061FC49AC500C4CF5A /* ViewController.swift */; };
 		C59D6F0A1FC49AC500C4CF5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59D6F081FC49AC500C4CF5A /* Main.storyboard */; };
 		C59D6F0C1FC49AC500C4CF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C59D6F0B1FC49AC500C4CF5A /* Assets.xcassets */; };
 		C59D6F0F1FC49AC500C4CF5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C59D6F0D1FC49AC500C4CF5A /* LaunchScreen.storyboard */; };
+		C5C7B1761FD1C3830031DEC2 /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5C7B1771FD1C3830031DEC2 /* TesseractOCR.framework */; };
+		C5C7B17C1FD1CCA60031DEC2 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = C5C7B17B1FD1CCA60031DEC2 /* tessdata */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1766BDAF6EBC4550D288611C /* Pods_readinthedark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readinthedark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4E38B792F47869782DCF5A2 /* Pods-readinthedark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readinthedark.release.xcconfig"; path = "Pods/Target Support Files/Pods-readinthedark/Pods-readinthedark.release.xcconfig"; sourceTree = "<group>"; };
 		C56F99191FD079AA003CDCA7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		C5761A131FD1D5BD00E47BF9 /* Lenore3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lenore3.png; sourceTree = SOURCE_ROOT; };
 		C59D6F011FC49AC500C4CF5A /* readinthedark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readinthedark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59D6F041FC49AC500C4CF5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C59D6F061FC49AC500C4CF5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +31,9 @@
 		C59D6F0B1FC49AC500C4CF5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C59D6F0E1FC49AC500C4CF5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C59D6F101FC49AC500C4CF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5C7B1771FD1C3830031DEC2 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C7B17B1FD1CCA60031DEC2 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		D78EE7936315D312F724A615 /* Pods-readinthedark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readinthedark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-readinthedark/Pods-readinthedark.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +41,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C7B1761FD1C3830031DEC2 /* TesseractOCR.framework in Frameworks */,
+				2A52A877D5BC88FA33949C91 /* Pods_readinthedark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00FF58C7BE7158393B8C960E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D78EE7936315D312F724A615 /* Pods-readinthedark.debug.xcconfig */,
+				A4E38B792F47869782DCF5A2 /* Pods-readinthedark.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C59D6EF81FC49AC500C4CF5A = {
 			isa = PBXGroup;
 			children = (
 				C59D6F031FC49AC500C4CF5A /* readinthedark */,
 				C59D6F021FC49AC500C4CF5A /* Products */,
+				00FF58C7BE7158393B8C960E /* Pods */,
+				E5CE6B5CCACAED105D7FFC48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +81,24 @@
 			children = (
 				C59D6F041FC49AC500C4CF5A /* AppDelegate.swift */,
 				C59D6F061FC49AC500C4CF5A /* ViewController.swift */,
+				C5C7B17B1FD1CCA60031DEC2 /* tessdata */,
 				C59D6F081FC49AC500C4CF5A /* Main.storyboard */,
+				C5761A131FD1D5BD00E47BF9 /* Lenore3.png */,
 				C59D6F0B1FC49AC500C4CF5A /* Assets.xcassets */,
 				C59D6F0D1FC49AC500C4CF5A /* LaunchScreen.storyboard */,
 				C59D6F101FC49AC500C4CF5A /* Info.plist */,
 				C56F99191FD079AA003CDCA7 /* README.md */,
 			);
 			path = readinthedark;
+			sourceTree = "<group>";
+		};
+		E5CE6B5CCACAED105D7FFC48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5C7B1771FD1C3830031DEC2 /* TesseractOCR.framework */,
+				1766BDAF6EBC4550D288611C /* Pods_readinthedark.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +108,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C59D6F131FC49AC500C4CF5A /* Build configuration list for PBXNativeTarget "readinthedark" */;
 			buildPhases = (
+				C537CA46847FD96B71C27623 /* [CP] Check Pods Manifest.lock */,
 				C59D6EFD1FC49AC500C4CF5A /* Sources */,
 				C59D6EFE1FC49AC500C4CF5A /* Frameworks */,
 				C59D6EFF1FC49AC500C4CF5A /* Resources */,
+				E83ECF14D79D5694B3013F7A /* [CP] Embed Pods Frameworks */,
+				6E244A2F8E7DFD3C5EB1700F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,14 +163,70 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5761A141FD1D5BD00E47BF9 /* Lenore3.png in Resources */,
 				C59D6F0F1FC49AC500C4CF5A /* LaunchScreen.storyboard in Resources */,
 				C59D6F0C1FC49AC500C4CF5A /* Assets.xcassets in Resources */,
+				C5C7B17C1FD1CCA60031DEC2 /* tessdata in Resources */,
 				C56F991A1FD079AA003CDCA7 /* README.md in Resources */,
 				C59D6F0A1FC49AC500C4CF5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6E244A2F8E7DFD3C5EB1700F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-readinthedark/Pods-readinthedark-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C537CA46847FD96B71C27623 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readinthedark-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E83ECF14D79D5694B3013F7A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-readinthedark/Pods-readinthedark-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-readinthedark/Pods-readinthedark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C59D6EFD1FC49AC500C4CF5A /* Sources */ = {
@@ -199,6 +292,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -256,6 +350,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -276,10 +371,12 @@
 		};
 		C59D6F141FC49AC500C4CF5A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D78EE7936315D312F724A615 /* Pods-readinthedark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JD3B3AGYTS;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = readinthedark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fadetoproductions.readinthedark;
@@ -291,10 +388,12 @@
 		};
 		C59D6F151FC49AC500C4CF5A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4E38B792F47869782DCF5A2 /* Pods-readinthedark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JD3B3AGYTS;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = readinthedark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fadetoproductions.readinthedark;

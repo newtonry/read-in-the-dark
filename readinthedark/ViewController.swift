@@ -9,9 +9,12 @@
 import UIKit
 import AVFoundation
 import Vision
+import TesseractOCR
+
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var readTextView: UILabel!
     @IBOutlet weak var previewView: UIView!
     var flashOn = false
     
@@ -63,6 +66,47 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    
+    // Tesseract
+    func readImage(image: UIImage) {
+        NSLog("Well SHIT")
+        
+        guard let tesseract = G8Tesseract(language: "eng") else {
+            NSLog("Issues with tesseract")
+            return
+        }
+        
+        NSLog("Well SHIT 2")
+        
+        tesseract.engineMode = .tesseractCubeCombined
+        
+        tesseract.pageSegmentationMode = .auto
+        
+        NSLog("Tesseract set")
+        
+        
+//        let testImage = UIImage(named: "Lenore3.png")
+//        tesseract.image = testImage?.g8_blackAndWhite()
+        tesseract.image = image.g8_blackAndWhite()
+        
+        NSLog("Tesseract recognzing")
+
+        tesseract.recognize()
+
+        
+        if let recognizedText = tesseract.recognizedText {
+            NSLog(recognizedText)
+            DispatchQueue.main.async {
+                self.readTextView.text = recognizedText
+            }
+        }
+    }
+    
+    
+    
+    
+    // Vision Kit
     func startTextDetection() {
         let textRequest = VNDetectTextRectanglesRequest(completionHandler: self.detectTextHandler)
         textRequest.reportCharacterBoxes = true
@@ -92,15 +136,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPan(_ sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: view)
-        let velocity = sender.velocity(in: view)
-        if sender.state == .changed {
-            let newISO = getNewISO(translation: translation, velocity: velocity)
-            captureDevice.setExposureModeCustom(duration: AVCaptureDevice.currentExposureDuration, iso: newISO, completionHandler: nil)            
-            lastTranslationX = translation.x            
-        } else if sender.state == .ended {
-            lastTranslationX = 0
-        }
+//        let translation = sender.translation(in: view)
+//        let velocity = sender.velocity(in: view)
+//        if sender.state == .changed {
+//            let newISO = getNewISO(translation: translation, velocity: velocity)
+//            captureDevice.setExposureModeCustom(duration: AVCaptureDevice.currentExposureDuration, iso: newISO, completionHandler: nil)
+//            lastTranslationX = translation.x
+//        } else if sender.state == .ended {
+//            lastTranslationX = 0
+//        }
     }
     
     @IBAction func flashButton(_ sender: UIButton) {
@@ -113,24 +157,73 @@ class ViewController: UIViewController {
 
 // TODO Review all this
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    
+    func getImageFromBuffer(sampleBuffer: CMSampleBuffer, from connecrtion: AVCaptureConnection) -> UIImage? {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return nil
+        }
+        
+        // TODO review this
+        CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+        let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer)
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
+        guard let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+            return nil
+        }
+        guard let cgImage = context.makeImage() else {
+            return nil
+        }
+        let image = UIImage(cgImage: cgImage, scale: 1, orientation:.right)
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
+        return image
+    }
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
+
         
-        var requestOptions:[VNImageOption : Any] = [:]
-        
-        if let camData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
-            requestOptions = [.cameraIntrinsics:camData]
+        // TODO review this
+        CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+        let baseAddress = CVPixelBufferGetBaseAddress(pixelBuffer)
+        let width = CVPixelBufferGetWidth(pixelBuffer)
+        let height = CVPixelBufferGetHeight(pixelBuffer)
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue)
+        guard let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+            return
         }
-        
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 6)!, options: requestOptions)
-        
-        do {
-            try imageRequestHandler.perform(self.requests)
-        } catch {
-            print(error)
+        guard let cgImage = context.makeImage() else {
+            return
         }
+        let image = UIImage(cgImage: cgImage, scale: 1, orientation:.right)
+        CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
+
+        
+        readImage(image: image)
+        
+        
+//
+//
+//        var requestOptions:[VNImageOption : Any] = [:]
+//
+//        if let camData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
+//            requestOptions = [.cameraIntrinsics:camData]
+//        }
+//
+//        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 6)!, options: requestOptions)
+//
+//        do {
+//            try imageRequestHandler.perform(self.requests)
+//        } catch {
+//            print(error)
+//        }
     }
 }
 
